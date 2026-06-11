@@ -44,11 +44,12 @@ body {
 }
 .header-inner {
   max-width: 1400px; margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
   height: 100%;
   display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
 }
-.logo { display: flex; align-items: center; gap: 10px; }
+.logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .logo-icon { font-size: 1.6rem; }
 .logo-text { font-size: 1.4rem; color: var(--white); letter-spacing: -.3px; }
 .logo-text strong { font-weight: 800; }
@@ -59,7 +60,16 @@ body {
   display: none;
 }
 @media (min-width: 600px) { .logo-sub { display: inline; } }
-.header-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+
+/* hide "Refresh Deals" label on small screens, keep icon */
+@media (max-width: 500px) {
+  .logo-text { font-size: 1.1rem; }
+  .logo-icon { font-size: 1.3rem; }
+  #refreshBtn .btn-label { display: none; }
+  .store-picker { max-width: 110px; font-size: .75rem; }
+  .btn { padding: 7px 10px; font-size: .8rem; }
+}
 
 .store-picker-wrap {
   display: flex; align-items: center; gap: 6px;
@@ -116,11 +126,14 @@ body {
 .layout {
   display: flex;
   max-width: 1400px; margin: 0 auto;
-  padding: 20px;
+  padding: 16px;
   gap: 24px;
   min-height: calc(100vh - var(--header-h));
 }
 .main { flex: 1; min-width: 0; }
+@media (max-width: 600px) {
+  .layout { padding: 10px; }
+}
 
 /* ── Stats Bar ── */
 .stats-bar {
@@ -154,6 +167,12 @@ body {
   display: flex; flex-wrap: wrap; gap: 10px;
   align-items: center; margin-bottom: 16px;
 }
+@media (max-width: 600px) {
+  .filters-bar { gap: 8px; }
+  .search-wrap { min-width: 0; }
+  .price-filter-wrap, .sort-wrap { flex: 1 1 calc(50% - 4px); }
+  .sort-select { width: 100%; }
+}
 .search-wrap {
   position: relative; flex: 1; min-width: 200px;
 }
@@ -171,6 +190,18 @@ body {
 .search-input:focus { outline: none; border-color: var(--red); }
 .category-tabs {
   display: flex; flex-wrap: wrap; gap: 6px;
+}
+@media (max-width: 600px) {
+  .category-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    width: 100%;
+  }
+  .category-tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; }
 }
 .tab {
   padding: 6px 14px; border-radius: 20px;
@@ -202,6 +233,15 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
+}
+@media (max-width: 600px) {
+  .deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+@media (max-width: 360px) {
+  .deals-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Loading ── */
@@ -289,12 +329,13 @@ body {
 .deal-footer { padding: 10px 12px 12px; border-top: 1px solid var(--gray-100); }
 
 .add-btn {
-  width: 100%; padding: 8px;
+  width: 100%; padding: 10px;
   border-radius: var(--radius-sm);
   border: 1.5px solid var(--red);
   background: var(--white); color: var(--red);
   font-size: .82rem; font-weight: 700; cursor: pointer;
   transition: all .15s; display: flex; align-items: center; justify-content: center; gap: 6px;
+  touch-action: manipulation;
 }
 .add-btn:hover { background: var(--red); color: var(--white); }
 .add-btn.added { background: var(--green); border-color: var(--green); color: var(--white); }
@@ -305,10 +346,11 @@ body {
 }
 .qty-control.show { display: flex; }
 .qty-btn {
-  width: 28px; height: 28px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   border: 1.5px solid var(--gray-300); background: var(--white);
   font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all .15s;
+  touch-action: manipulation;
 }
 .qty-btn:hover { border-color: var(--red); color: var(--red); }
 .qty-num { font-weight: 700; font-size: .9rem; min-width: 20px; text-align: center; }
@@ -406,10 +448,11 @@ body {
   display: flex; align-items: center; gap: 6px;
 }
 .cart-qty-btn {
-  width: 22px; height: 22px; border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 50%;
   border: 1px solid var(--gray-300); background: var(--white);
   font-size: .85rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: all .15s;
+  touch-action: manipulation;
 }
 .cart-qty-btn:hover { border-color: var(--red); color: var(--red); }
 .cart-qty-num { font-size: .8rem; font-weight: 700; min-width: 18px; text-align: center; }

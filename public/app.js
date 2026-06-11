@@ -4,6 +4,7 @@ let cart = JSON.parse(localStorage.getItem('dealCart') || '{}');
 let activeCategory = 'All';
 let searchQuery = '';
 let sortMode = 'default';
+let maxPrice = null;
 let selectedStore = JSON.parse(localStorage.getItem('selectedStore') || 'null');
 
 /* ── DOM refs ── */
@@ -153,6 +154,10 @@ function getFilteredDeals() {
       d.name.toLowerCase().includes(q) ||
       (d.description && d.description.toLowerCase().includes(q))
     );
+  }
+
+  if (maxPrice !== null) {
+    deals = deals.filter(d => d.price !== null && d.price <= maxPrice);
   }
 
   switch (sortMode) {
@@ -386,6 +391,10 @@ searchInput.addEventListener('input', e => {
 });
 sortSelect.addEventListener('change', e => {
   sortMode = e.target.value;
+  renderDeals();
+});
+document.getElementById('priceFilter').addEventListener('change', e => {
+  maxPrice = e.target.value === 'all' ? null : parseFloat(e.target.value);
   renderDeals();
 });
 

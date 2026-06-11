@@ -23,7 +23,7 @@
           </select>
         </div>
         <button class="btn btn-secondary" id="refreshBtn">
-          <span class="btn-icon">↻</span> Refresh Deals
+          <span class="btn-icon">↻</span><span class="btn-label"> Refresh Deals</span>
         </button>
         <button class="btn btn-primary cart-toggle" id="cartToggle">
           <span class="btn-icon">🛍</span> My Cart
@@ -65,6 +65,14 @@
         </div>
         <div class="category-tabs" id="categoryTabs">
           <button class="tab active" data-cat="All">All</button>
+        </div>
+        <div class="price-filter-wrap">
+          <select id="priceFilter" class="sort-select">
+            <option value="all">Max Price: Any</option>
+            <option value="5">Under $5</option>
+            <option value="10">Under $10</option>
+            <option value="20">Under $20</option>
+          </select>
         </div>
         <div class="sort-wrap">
           <select id="sortSelect" class="sort-select">
