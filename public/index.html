@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deal Spotter — Jewel Weekly Deals</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🛒</span>
+        <span class="logo-text">Deal<strong>Spotter</strong></span>
+        <span class="logo-sub">Jewel-Osco Weekly Ad</span>
+      </div>
+      <div class="header-actions">
+        <div class="store-picker-wrap">
+          <span class="store-picker-icon">📍</span>
+          <select id="storePicker" class="store-picker">
+            <option value="" disabled>Select a store…</option>
+          </select>
+        </div>
+        <button class="btn btn-secondary" id="refreshBtn">
+          <span class="btn-icon">↻</span> Refresh Deals
+        </button>
+        <button class="btn btn-primary cart-toggle" id="cartToggle">
+          <span class="btn-icon">🛍</span> My Cart
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Main content -->
+    <main class="main" id="main">
+
+      <!-- Stats bar -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-card" id="statDeals">
+          <div class="stat-num" id="statDealsNum">—</div>
+          <div class="stat-label">Total Deals</div>
+        </div>
+        <div class="stat-card" id="statSavings">
+          <div class="stat-num" id="statSavingsNum">—</div>
+          <div class="stat-label">Avg Savings</div>
+        </div>
+        <div class="stat-card" id="statCart">
+          <div class="stat-num" id="statCartNum">$0.00</div>
+          <div class="stat-label">Cart Total</div>
+        </div>
+        <div class="stat-card" id="statSource">
+          <div class="stat-num source-badge" id="statSourceBadge">—</div>
+          <div class="stat-label">Data Source</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search deals…" />
+        </div>
+        <div class="category-tabs" id="categoryTabs">
+          <button class="tab active" data-cat="All">All</button>
+        </div>
+        <div class="sort-wrap">
+          <select id="sortSelect" class="sort-select">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A–Z</option>
+            <option value="savings">Best Savings</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Status / loading -->
+      <div class="status-banner" id="statusBanner" style="display:none"></div>
+
+      <!-- Deals grid -->
+      <div class="deals-grid" id="dealsGrid">
+        <div class="loading-state" id="loadingState">
+          <div class="spinner"></div>
+          <p>Fetching this week's Jewel deals…</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Cart sidebar -->
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>My Shopping Cart</h2>
+        <button class="close-cart" id="closeCart">✕</button>
+      </div>
+
+      <div class="cart-body" id="cartBody">
+        <div class="cart-empty" id="cartEmpty">
+          <div class="cart-empty-icon">🛍</div>
+          <p>Your cart is empty</p>
+          <small>Add deals from the dashboard</small>
+        </div>
+        <ul class="cart-list" id="cartList"></ul>
+      </div>
+
+      <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-line">
+          <span>Subtotal (<span id="cartItemCount">0</span> items)</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-line cart-total">
+          <span>Estimated Total</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <div class="cart-note">* Prices from weekly ad. Final total may vary.</div>
+        <button class="btn btn-danger btn-block" id="clearCartBtn">Clear Cart</button>
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
