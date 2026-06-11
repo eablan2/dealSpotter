@@ -1,5 +1,7 @@
 /* ── Reset & Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+body { overflow-x: hidden; }
 
 :root {
   --red:       #d4202a;
@@ -40,14 +42,14 @@ body {
   position: sticky; top: 0; z-index: 100;
   background: var(--red);
   box-shadow: 0 2px 8px rgba(0,0,0,.2);
-  height: var(--header-h);
 }
 .header-inner {
   max-width: 1400px; margin: 0 auto;
   padding: 0 12px;
-  height: 100%;
+  min-height: var(--header-h);
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .logo-icon { font-size: 1.6rem; }
@@ -60,15 +62,16 @@ body {
   display: none;
 }
 @media (min-width: 600px) { .logo-sub { display: inline; } }
-.header-actions { display: flex; gap: 8px; align-items: center; }
+.header-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 
-/* hide "Refresh Deals" label on small screens, keep icon */
+/* Compact header on small screens */
 @media (max-width: 500px) {
-  .logo-text { font-size: 1.1rem; }
-  .logo-icon { font-size: 1.3rem; }
+  .header-inner { padding: 8px 10px; gap: 6px; }
+  .logo-text { font-size: 1.05rem; }
+  .logo-icon { font-size: 1.2rem; }
   #refreshBtn .btn-label { display: none; }
-  .store-picker { max-width: 110px; font-size: .75rem; }
-  .btn { padding: 7px 10px; font-size: .8rem; }
+  .store-picker { max-width: 120px; font-size: .75rem; }
+  .btn { padding: 7px 10px; font-size: .8rem; gap: 4px; }
 }
 
 .store-picker-wrap {

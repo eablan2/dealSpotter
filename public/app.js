@@ -357,12 +357,17 @@ function renderCartSidebar() {
 
 /* ── Cart Sidebar Toggle ── */
 function openCart() {
+  cartSidebar.classList.remove('hidden');
   cartSidebar.classList.add('open');
   overlay.classList.add('show');
 }
 function closeCartFn() {
   cartSidebar.classList.remove('open');
   overlay.classList.remove('show');
+  if (window.innerWidth <= 900) {
+    // on mobile let transform hide it; re-hide with hidden after transition
+    setTimeout(() => cartSidebar.classList.add('hidden'), 300);
+  }
 }
 
 cartToggle.addEventListener('click', () => {
